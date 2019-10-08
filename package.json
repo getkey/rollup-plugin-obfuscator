@@ -1,13 +1,15 @@
 {
   "name": "rollup-plugin-obfuscator",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "The most powerful rollup plugin for javascript-obfuscator",
   "main": "rollup-plugin-obfuscator.js",
   "repository": "git@github.com:getkey/rollup-plugin-obfuscator.git",
   "license": "MPL-2.0",
   "private": false,
   "dependencies": {
-    "javascript-obfuscator": "^0.18.1",
     "rollup-pluginutils": "^2.8.2"
+  },
+  "peerDependencies": {
+    "javascript-obfuscator": "^0.18.1"
   }
 }

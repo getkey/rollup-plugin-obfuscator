@@ -3,16 +3,18 @@
 The most powerful rollup plugin for [javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator).
 
 ```sh
-$ yarn add rollup-plugin-obfuscator
+$ yarn add rollup-plugin-obfuscator javascript-obfuscator
 ```
+
+**You also need to install `javascript-obfuscator` alongside or this plugin won't work.**
 
 ## Why?
 
 There is already [a plugin for this](https://github.com/javascript-obfuscator/rollup-plugin-javascript-obfuscator), but it's outdated and not powerful enough for me.
 
-I'm not saying I'll be any better at maintaining this plugin, but I give you the option to supply your own version of `javascript-obfuscator`.
+I'm not saying I'll be any better at maintaining this plugin, but the advantage of it is that you manage your version of `javascript-obfuscator` yourself.
 
-Additionally, the nice thing about this plugin is that it allows you to apply obfuscation settings:
+Additionally, the other niceties are that you can apply obfuscation settings:
 
 - per file 
 - to the whole bundle
