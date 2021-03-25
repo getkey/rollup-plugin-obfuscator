@@ -19,8 +19,8 @@ module.exports = options => {
 	return {
 		name: 'rollup-plugin-obfuscator',
 
-		transform: (code, id) => {
-			if (!filter(id) || options.fileOptions === false) return null;
+		transform: options.fileOptions === false ? undefined : (code, id) => {
+			if (!filter(id)) return null;
 
 			const obfuscationResult = options.obfuscator.obfuscate(code, {
 				...options.fileOptions,
@@ -33,9 +33,7 @@ module.exports = options => {
 				map: obfuscationResult.getSourceMap(),
 			};
 		},
-		renderChunk: (code, { fileName }) => {
-			if (options.globalOptions === false) return null;
-
+		renderChunk: options.globalOptions === false ? undefined : (code, { fileName }) => {
 			const obfuscationResult = options.obfuscator.obfuscate(code, {
 				...options.globalOptions,
 				inputFileName: fileName,
