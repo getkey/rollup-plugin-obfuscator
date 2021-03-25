@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-obfuscator",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "The most powerful rollup plugin for javascript-obfuscator",
   "main": "rollup-plugin-obfuscator.js",
   "repository": "git@github.com:getkey/rollup-plugin-obfuscator.git",

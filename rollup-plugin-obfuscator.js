@@ -20,7 +20,7 @@ module.exports = options => {
 		name: 'rollup-plugin-obfuscator',
 
 		transform: (code, id) => {
-			if (!filter(id)) return null;
+			if (!filter(id) || options.fileOptions === false) return null;
 
 			const obfuscationResult = options.obfuscator.obfuscate(code, {
 				...options.fileOptions,

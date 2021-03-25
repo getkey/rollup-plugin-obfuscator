@@ -33,6 +33,7 @@ export default {
 			// options that will be passed to javascript-obfuscator
 			// when it processes each file
 			// see allowed options here https://github.com/javascript-obfuscator/javascript-obfuscator
+			// if you don't want to apply the obfuscation to the whole bundle, you can set this to `false`
 			fileOptions: {
 				// your options here
 			},
