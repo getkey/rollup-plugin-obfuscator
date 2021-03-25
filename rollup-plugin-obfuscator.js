@@ -25,8 +25,6 @@ module.exports = options => {
 			const obfuscationResult = options.obfuscator.obfuscate(code, {
 				...options.fileOptions,
 				inputFileName: id,
-				reservedNames: [ '.' ], // prevents modifying the import/export identifiers
-				reservedStrings: [ 'a^' ], // never matches, necessary to enable `reservedNames`, see https://github.com/javascript-obfuscator/javascript-obfuscator/issues/327
 				sourceMap: true,
 			});
 
@@ -42,8 +40,6 @@ module.exports = options => {
 				...options.globalOptions,
 				inputFileName: fileName,
 				sourceMap: true,
-				reservedNames: [ '.' ], // TODO: find why that's necessary
-				reservedStrings: [ 'a^' ], // never matches, necessary to enable `reservedNames`, see https://github.com/javascript-obfuscator/javascript-obfuscator/issues/327
 			});
 
 			return {

@@ -57,5 +57,3 @@ export default {
 	]
 }
 ```
-
-Note that a couple javascript-obfuscator options are forced. This is necessary for this plugin to work. Check out which ones you can't use [here](https://github.com/getkey/rollup-plugin-obfuscator/blob/master/rollup-plugin-obfuscator.js).
