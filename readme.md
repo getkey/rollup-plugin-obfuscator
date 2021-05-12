@@ -3,18 +3,22 @@
 The most powerful rollup plugin for [javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator).
 
 ```sh
-$ yarn add rollup-plugin-obfuscator javascript-obfuscator
+yarn add --dev rollup-plugin-obfuscator javascript-obfuscator
 ```
 
-**You also need to install `javascript-obfuscator` alongside or this plugin won't work.**
+or
+
+```sh
+npm install --save-dev rollup-plugin-obfuscator javascript-obfuscator
+```
 
 ## Why?
 
 There is already [a plugin for this](https://github.com/javascript-obfuscator/rollup-plugin-javascript-obfuscator), but it's outdated and not powerful enough for me.
 
-I'm not saying I'll be any better at maintaining this plugin, but the advantage of it is that you manage your version of `javascript-obfuscator` yourself.
+With this plugin **you** install `javascript-obfuscator` separately from the plugin (as you can see in the installation instructions above). You will always be able to update it, even if this plugin stops being maintained.
 
-Additionally, the other niceties are that you can apply obfuscation settings:
+Additionally, it's much more powerful because you can apply obfuscation settings:
 
 - per file 
 - to the whole bundle
@@ -30,31 +34,56 @@ export default {
 	input: 'src/main.js',
 	plugins: [
 		obfuscator({
-			// options that will be passed to javascript-obfuscator
-			// when it processes each file
-			// see allowed options here https://github.com/javascript-obfuscator/javascript-obfuscator
-			// if you don't want to apply the obfuscation to the whole bundle, you can set this to `false`
 			fileOptions: {
-				// your options here
+				// Your javascript-obfuscator options here
+				// Will be applied on each file separately. Set to `false` to disable
+				// See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
 			},
-
-			// options that will be passed to javascript-obfuscator
-			// when it processes the whole bundle
-			// see allowed options here https://github.com/javascript-obfuscator/javascript-obfuscator
-			// if you don't want to apply the obfuscation to the whole bundle, you can set this to `false`
 			globalOptions: {
-				// your options here
+				// Your javascript-obfuscator options here
+				// Will be applied on the whole bundle. Set to `false` to disable
+				// See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
 			},
-
-			// on which files to apply the `fileOptions`
-			include: ['**/*.js', '**/*.ts'],
-
-			// on which files not to apply the `fileOptions`
-			exclude: ['node_modules/**'],
-
-			// this plugin supplies javascript-obfuscator but you are free to override it if you want
-			obfuscator: require('javascript-obfuscator'), 
 		}),
 	]
 }
 ```
+
+## Options
+
+### `globalOptions`
+
+Type: `Object` | `false`<br/>
+Default: `{}`
+
+Options that will be passed to javascript-obfuscator when it processes each file. If you don't want each of your file to be processed individually, you can set this to `false`.
+See allowed options [here](https://github.com/javascript-obfuscator/javascript-obfuscator).
+
+### `fileOptions`
+
+Type: `Object` | `false`<br/>
+Default: `{}`
+
+Options that will be passed to javascript-obfuscator when it processes the whole bundle. If you don't want to apply the obfuscation to the whole bundle, you can set this to `false`.
+See allowed options [here](https://github.com/javascript-obfuscator/javascript-obfuscator).
+
+### `include`
+
+Type: `String` | `Array[...String]`<br/>
+Default: `['**/*.js', '**/*.ts']`
+
+Which files to obfuscate with `fileOptions`.
+
+### `exclude`
+
+Type: `String` | `Array[...String]`<br/>
+Default: `['node_modules/**']`
+
+Which files to skip applying `fileOptions` on.
+
+### `obfuscator`
+
+Type: `JavascriptObfuscator`<br/>
+Default: `require('javascript-obfuscator')`
+
+This plugin uses the version of `javascript-obfuscator` you installed alongside with it, but you are free to override it (for example, if you want to use a fork).
