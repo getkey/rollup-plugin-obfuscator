@@ -10,6 +10,7 @@
     "rollup-pluginutils": "^2.8.2"
   },
   "peerDependencies": {
-    "javascript-obfuscator": "^0.18.1"
+    "javascript-obfuscator": "^0.18.1",
+    "rollup": "^2.56.3"
   }
 }
