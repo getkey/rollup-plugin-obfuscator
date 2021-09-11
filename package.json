@@ -7,7 +7,7 @@
   "license": "MPL-2.0",
   "private": false,
   "dependencies": {
-    "rollup-pluginutils": "^2.8.2"
+    "@rollup/pluginutils": "^4.1.1"
   },
   "peerDependencies": {
     "javascript-obfuscator": "^0.18.1",

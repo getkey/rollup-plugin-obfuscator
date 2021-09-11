@@ -1,5 +1,5 @@
 import { Plugin } from 'rollup';
-import { createFilter } from 'rollup-pluginutils';
+import { createFilter } from '@rollup/pluginutils';
 
 import obfuscator, { ObfuscationResult, ObfuscatorOptions } from 'javascript-obfuscator';
 
