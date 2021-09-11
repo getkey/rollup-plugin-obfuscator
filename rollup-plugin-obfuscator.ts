@@ -1,7 +1,7 @@
 import { Plugin } from 'rollup';
 import { createFilter } from '@rollup/pluginutils';
 
-import obfuscator, { ObfuscationResult, ObfuscatorOptions } from 'javascript-obfuscator';
+import { obfuscate, ObfuscationResult, ObfuscatorOptions } from 'javascript-obfuscator';
 
 type FilterOptions = string | RegExp | (string | RegExp)[];
 
@@ -23,11 +23,9 @@ export interface RollupPluginObfuscatorOptions {
 	 */
 	exclude: FilterOptions,
 	/**
-	 * Overwrite the obfuscator instance used.
+	 * Overwrite the obfuscate method used.
 	 */
-	obfuscator: {
-		obfuscate: (sourceCode: string, inputOptions?: ObfuscatorOptions) => ObfuscationResult
-	}
+	obfuscate: (sourceCode: string, inputOptions?: ObfuscatorOptions) => ObfuscationResult,
 }
 
 const defaultOptions = {
@@ -35,7 +33,7 @@ const defaultOptions = {
 	fileOptions: {},
 	include: ['**/*.js', '**/*.ts'],
 	exclude: ['node_modules/**'],
-	obfuscator,
+	obfuscate,
 };
 
 export default (override: Partial<RollupPluginObfuscatorOptions>): Plugin => {
@@ -51,7 +49,7 @@ export default (override: Partial<RollupPluginObfuscatorOptions>): Plugin => {
 		transform: options.fileOptions === false ? undefined : (code, id) => {
 			if (!filter(id)) return null;
 
-			const obfuscationResult = options.obfuscator.obfuscate(code, {
+			const obfuscationResult = options.obfuscate(code, {
 				...options.fileOptions,
 				inputFileName: id,
 				sourceMap: true,
@@ -63,7 +61,7 @@ export default (override: Partial<RollupPluginObfuscatorOptions>): Plugin => {
 			};
 		},
 		renderChunk: options.globalOptions === false ? undefined : (code, { fileName }) => {
-			const obfuscationResult = options.obfuscator.obfuscate(code, {
+			const obfuscationResult = options.obfuscate(code, {
 				...options.globalOptions,
 				inputFileName: fileName,
 				sourceMap: true,
