@@ -12,7 +12,9 @@
   "private": false,
   "files": [
     "src/**",
-    "dist/**"
+    "dist/**",
+    "readme.md",
+    "license.txt"
   ],
   "dependencies": {
     "@rollup/pluginutils": "^4.1.1"
