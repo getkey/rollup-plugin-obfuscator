@@ -3,6 +3,7 @@
   "version": "0.2.1",
   "description": "The most powerful rollup plugin for javascript-obfuscator",
   "main": "dist/rollup-plugin-obfuscator.js",
+  "types": "dist/rollup-plugin-obfuscator.d.ts",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build"
