@@ -1,5 +1,7 @@
 # rollup-plugin-obfuscator
 
+![npm](https://img.shields.io/npm/v/rollup-plugin-obfuscator)
+
 The most powerful rollup plugin for [javascript-obfuscator](https://github.com/javascript-obfuscator/javascript-obfuscator).
 
 ```sh
@@ -16,11 +18,11 @@ npm install --save-dev rollup-plugin-obfuscator javascript-obfuscator
 
 There is already [a plugin for this](https://github.com/javascript-obfuscator/rollup-plugin-javascript-obfuscator), but it's outdated and not powerful enough for me.
 
-With this plugin **you** install `javascript-obfuscator` separately from the plugin (as you can see in the installation instructions above). You will always be able to update it, even if this plugin stops being maintained.
+With this plugin **you** install `javascript-obfuscator` separately from the plugin (as you saw in the installation instructions above). You will always be able to update it, even if this plugin stops being maintained.
 
 Additionally, it's much more powerful because you can apply obfuscation settings:
 
-- per file 
+- per file
 - to the whole bundle
 
 The point is that you can avoid obfuscating your open-source dependencies, which results in a **huge performance boost**.
