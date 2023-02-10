@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-obfuscator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "The most powerful rollup plugin for javascript-obfuscator",
   "keywords": [
     "rollup-plugin",
