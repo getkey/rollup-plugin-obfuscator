@@ -14,12 +14,12 @@ or
 npm install --save-dev rollup-plugin-obfuscator javascript-obfuscator
 ```
 
-## Why was this plugin made?
+## Features
 
-1. javascript-obfuscator is installed separately from the rollup plugin, so it will always be updatable
-2. with this plugin, you can decide if you prefer to apply obfuscation to:
-	a. each file, to avoid obfuscating your open-source dependencies, which results in a **huge performance boost**
-	b. the whole bundle
+1. javascript-obfuscator is installed separately from the rollup plugin, so it will always be updatable (the official rollup plugin has been outdated for years!)
+2. You can decide if you prefer to apply obfuscation to:
+	- each file, to avoid obfuscating your open-source dependencies, which results in a **huge performance boost**
+	- the traditional way: the whole bundle
 
 ## Usage
 
@@ -32,7 +32,6 @@ export default {
 		obfuscator({
 			options: {
 				// Your javascript-obfuscator options here
-				// Will be applied on each file separately.
 				// See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
 			},
 		}),
