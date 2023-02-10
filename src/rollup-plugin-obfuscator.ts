@@ -40,7 +40,7 @@ const defaultOptions = {
 	obfuscate,
 };
 
-function rollupPluginObfuscator (override: Partial<RollupPluginObfuscatorOptions>): Plugin {
+function rollupPluginObfuscator (override?: Partial<RollupPluginObfuscatorOptions>): Plugin {
 	const options: RollupPluginObfuscatorOptions = {
 		...defaultOptions,
 		...override,
