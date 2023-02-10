@@ -7,19 +7,23 @@ type FilterOptions = string | RegExp | (string | RegExp)[];
 
 export interface RollupPluginObfuscatorOptions {
 	/**
-	 * Global options, applied when rendering chunks. Pass `false` to disable.
+	 * Set to `true` if you want to obfuscate the whole bundle, `false` to obfuscate each file separately.
+	 * @default false
 	 */
-	globalOptions: ObfuscatorOptions | false,
+	global: boolean,
 	/**
-	 * Per-file options, applied when transforming files, include/exclude works for this option. Pass `false` to disable.
+	 * javascript-obfuscator options. Refer to documentation here https://github.com/javascript-obfuscator/javascript-obfuscator#javascript-obfuscator-options
+	 * @default {}
 	 */
-	fileOptions: ObfuscatorOptions | false,
+	options: ObfuscatorOptions,
 	/**
 	 * Files to include when applying per-file obfuscation.
+	 * @default ['**\/*.js', '**\/*.ts']
 	 */
 	include: FilterOptions,
 	/**
 	 * Files to exclude when applying per-file obfuscation. The priority is higher than `include`.
+	 * @default ['node_modules/**']
 	 */
 	exclude: FilterOptions,
 	/**
@@ -29,8 +33,8 @@ export interface RollupPluginObfuscatorOptions {
 }
 
 const defaultOptions = {
-	globalOptions: {},
-	fileOptions: {},
+	global: false,
+	options: {},
 	include: ['**/*.js', '**/*.ts'],
 	exclude: ['node_modules/**'],
 	obfuscate,
@@ -46,11 +50,11 @@ export default (override: Partial<RollupPluginObfuscatorOptions>): Plugin => {
 	return {
 		name: 'rollup-plugin-obfuscator',
 
-		transform: options.fileOptions === false ? undefined : (code, id) => {
+		transform: options.global ? undefined : (code, id) => {
 			if (!filter(id)) return null;
 
 			const obfuscationResult = options.obfuscate(code, {
-				...options.fileOptions,
+				...options.options,
 				inputFileName: id,
 				sourceMap: true,
 			});
@@ -60,9 +64,9 @@ export default (override: Partial<RollupPluginObfuscatorOptions>): Plugin => {
 				map: obfuscationResult.getSourceMap(),
 			};
 		},
-		renderChunk: options.globalOptions === false ? undefined : (code, { fileName }) => {
+		renderChunk: !options.global ? undefined : (code, { fileName }) => {
 			const obfuscationResult = options.obfuscate(code, {
-				...options.globalOptions,
+				...options.options,
 				inputFileName: fileName,
 				sourceMap: true,
 			});

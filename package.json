@@ -1,7 +1,8 @@
 {
   "name": "rollup-plugin-obfuscator",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "The most powerful rollup plugin for javascript-obfuscator",
+  "keywords": ["rollup-plugin", "vite-plugin", "obfuscator", "javascript-obfuscator", "obfuscate", "obfuscation"],
   "main": "dist/rollup-plugin-obfuscator.js",
   "types": "dist/rollup-plugin-obfuscator.d.ts",
   "scripts": {

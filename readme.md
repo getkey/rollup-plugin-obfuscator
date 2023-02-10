@@ -14,18 +14,12 @@ or
 npm install --save-dev rollup-plugin-obfuscator javascript-obfuscator
 ```
 
-## Why?
+## Why was this plugin made?
 
-There is already [a plugin for this](https://github.com/javascript-obfuscator/rollup-plugin-javascript-obfuscator), but it's outdated and not powerful enough for me.
-
-With this plugin **you** install `javascript-obfuscator` separately from the plugin (as seen in the installation instructions above). This plugin is designed so `javascript-obfuscator` will always be updatable, independently from `rollup-plugin-obfuscator`.
-
-Additionally, it's much more powerful because you can apply obfuscation settings:
-
-- per file
-- to the whole bundle
-
-The point is that you can avoid obfuscating your open-source dependencies, which results in a **huge performance boost**.
+1. javascript-obfuscator is installed separately from the rollup plugin, so it will always be updatable
+2. with this plugin, you can decide if you prefer to apply obfuscation to:
+	a. each file, to avoid obfuscating your open-source dependencies, which results in a **huge performance boost**
+	b. the whole bundle
 
 ## Usage
 
@@ -36,14 +30,9 @@ export default {
 	input: 'src/main.js',
 	plugins: [
 		obfuscator({
-			fileOptions: {
+			options: {
 				// Your javascript-obfuscator options here
-				// Will be applied on each file separately. Set to `false` to disable
-				// See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
-			},
-			globalOptions: {
-				// Your javascript-obfuscator options here
-				// Will be applied on the whole bundle. Set to `false` to disable
+				// Will be applied on each file separately.
 				// See what's allowed: https://github.com/javascript-obfuscator/javascript-obfuscator
 			},
 		}),
@@ -53,20 +42,19 @@ export default {
 
 ## Options
 
-### `globalOptions`
+### `global`
 
-Type: `Object` | `false`<br/>
+Type: `boolean`<br/>
+Default: `false`
+
+Set to `true` if you want to obfuscate the whole bundle, `false` to obfuscate each file separately.
+
+### `options`
+
+Type: `Object`<br/>
 Default: `{}`
 
-Options that will be passed to javascript-obfuscator when it processes each file. If you don't want each of your file to be processed individually, you can set this to `false`.
-See allowed options [here](https://github.com/javascript-obfuscator/javascript-obfuscator).
-
-### `fileOptions`
-
-Type: `Object` | `false`<br/>
-Default: `{}`
-
-Options that will be passed to javascript-obfuscator when it processes the whole bundle. If you don't want to apply the obfuscation to the whole bundle, you can set this to `false`.
+Options that will be passed to javascript-obfuscator.
 See allowed options [here](https://github.com/javascript-obfuscator/javascript-obfuscator).
 
 ### `include`
