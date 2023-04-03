@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "javascript-obfuscator": "*",
-    "rollup": "^2.56.3"
+    "rollup": "^2.56.3||^3.0.0"
   },
   "devDependencies": {
     "javascript-obfuscator": "^4.0.0",
