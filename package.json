@@ -30,12 +30,12 @@
   },
   "peerDependencies": {
     "javascript-obfuscator": "*",
-    "rollup": "^2.56.3||^3.0.0"
+    "rollup": "^2.56.3||^3.0.0||^4.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "javascript-obfuscator": "^4.0.2",
-    "rollup": "^3.20.2",
+    "rollup": "^4.6.1",
     "typescript": "^5.0.4"
   }
 }
