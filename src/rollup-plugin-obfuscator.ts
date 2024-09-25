@@ -18,7 +18,7 @@ export interface RollupPluginObfuscatorOptions {
 	options: ObfuscatorOptions,
 	/**
 	 * Files to include when applying per-file obfuscation.
-	 * @default ['**\/*.js', '**\/*.ts']
+	 * @default ['**/*.js', '**/*.ts']
 	 */
 	include: FilterOptions,
 	/**
@@ -50,24 +50,15 @@ function rollupPluginObfuscator (override?: Partial<RollupPluginObfuscatorOption
 	return {
 		name: 'rollup-plugin-obfuscator',
 
-		transform: options.global ? undefined : (code, id) => {
-			if (!filter(id)) return null;
+		renderChunk: (code, chunk) => {
+			// Make sure only to obfuscate JS files in the final output
+			if (!filter(chunk.fileName)) return null;
+
+			console.log(`Obfuscating chunk: ${chunk.fileName}`); // Debug log
 
 			const obfuscationResult = options.obfuscate(code, {
 				...options.options,
-				inputFileName: id,
-				sourceMap: true,
-			});
-
-			return {
-				code: obfuscationResult.getObfuscatedCode(),
-				map: obfuscationResult.getSourceMap(),
-			};
-		},
-		renderChunk: !options.global ? undefined : (code, { fileName }) => {
-			const obfuscationResult = options.obfuscate(code, {
-				...options.options,
-				inputFileName: fileName,
+				inputFileName: chunk.fileName,
 				sourceMap: true,
 			});
 
